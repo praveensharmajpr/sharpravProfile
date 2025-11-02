@@ -25,20 +25,22 @@ const GlobalStyle = createGlobalStyle`
         line-height: 1.5rem;
         font-weight: 400;
         text-rendering: optimizeLegibility;
+
         &.blur {
             overflow: hidden;
             #___gatsby #main-content > * {
-              filter: blur(5px) ;
-              transition: all .3s ease-out;
-              pointer-events: none;
-              user-select: none;
+                filter: blur(5px);
+                transition: all .3s ease-out;
+                pointer-events: none;
+                user-select: none;
             }
-          }
         }
+
         &.splashScreen {
-              position: fixed;
-              overflow: hidden;
+            position: fixed;
+            overflow: hidden;
         }
+    }
 
     a {
         display: inline-block;
