@@ -40,13 +40,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          submodules: true     
-      - name: Build And Deploy
+          submodules: true  
+      - name: Use Node.js 20.x # Or your desired version
+          uses: actions/setup-node@v4 # Or the latest version
+          with:
+            node-version: '20.x' # Specify the exact version or a range (e.g., '16.x', '20.x')
+
+      - name: Install dependencies
+        run: npm  install --legacy-peer-deps
+        with:
+          cache: 'npm' # Caches node_modules based on package-lock.json    
+      - name: Build
+        run: npm run build # Or your specific build command   
+      - name: Deploy
         id: builddeploy        
         uses: Azure/static-web-apps-deploy@v1
         with:
-          node-version: '20.x' # Specify the desired Node.js version here
-          cache: 'npm' # Optional: Cache npm dependencies
           azure_static_web_apps_api_token: ${{ env.AZURE_STATIC_WEB_APPS_API_TOKEN }} # secret containing api token for app
           repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
           action: "upload"          
@@ -55,7 +64,7 @@ jobs:
           app_location: ${{ env.APP_LOCATION }}
           api_location: ${{ env.API_LOCATION }}
           app_artifact_location: ${{ env.APP_ARTIFACT_LOCATION }}
-          NPM_CONFIG_LEGACY_PEER_DEPS: true
+          
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
