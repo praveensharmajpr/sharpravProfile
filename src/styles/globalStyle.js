@@ -2,9 +2,7 @@ import { createGlobalStyle } from "styled-components";
 import 'modern-normalize';
 
 const GlobalStyle = createGlobalStyle`
-    
-    // Import normalize.css
-    ${modernNormalize}
+    /* modern-normalize provides a normalized baseline via a global import */
 
     * {
         box-sizing: border-box;
